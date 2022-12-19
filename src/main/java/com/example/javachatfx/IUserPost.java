@@ -3,5 +3,5 @@ package com.example.javachatfx;
 import java.io.IOException;
 
 public interface IUserPost {
-    public void sendMessageUser(String adressUser, int portUser, String nickname) throws IOException;
+    public void startMesager(String adressUser, int portUser, String nickname) throws IOException;
 }

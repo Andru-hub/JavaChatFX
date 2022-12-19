@@ -13,6 +13,7 @@ public class UserRegAuthDB {
     private static final String DB_PASS = "root";
     private static final String DB_URL = "jdbc:postgresql://localhost:5432/chatdb";
     private Connection connectionDB;
+    public String loginuser;
     public void registration(String loginUserReg, String emailUserReg, int ageUserReg, String phoneUserReg, String passwordUserReg){
         try {
             this.connectionDB = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASS);
@@ -39,17 +40,14 @@ public class UserRegAuthDB {
             preparedStatementAuth.setString(2, passwordUserAuth);
             ResultSet resultSet = preparedStatementAuth.executeQuery();
             if (resultSet.next()){
-                //System.out.println("Welcome " + emailUserAuth + "!");
+                loginuser = resultSet.getString(2);
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("ChatWindow.fxml"));
-
-
                 try {
                     loader.load();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
                 Parent root = loader.getRoot();
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
