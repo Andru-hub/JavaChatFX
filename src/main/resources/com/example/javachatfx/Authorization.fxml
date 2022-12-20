@@ -30,9 +30,9 @@
                 </Label>
             </children>
         </AnchorPane>
-        <Label layoutX="254.0" layoutY="29.0" prefHeight="109.0" prefWidth="283.0" text="HurmaChat" textFill="WHITE">
+        <Label layoutX="153.0" layoutY="29.0" prefHeight="110.0" prefWidth="343.0" text="HurmaChat" textFill="WHITE">
             <font>
-                <Font name="Monospaced Regular" size="50.0" />
+                <Font name="Elephant" size="50.0" />
             </font>
         </Label>
         <Button fx:id="loginSingUpButton" layoutX="600.0" layoutY="52.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="173.0" style="-fx-background-color: #F39C63;" text="Зарегистрироваться" textFill="WHITE">

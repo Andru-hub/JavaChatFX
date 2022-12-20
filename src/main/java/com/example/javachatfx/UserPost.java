@@ -38,22 +38,18 @@ public class UserPost{
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-            // записывает в поток публичный ключ (PublicKey)
             objectOutputStream.writeObject(pgp.getPublicKey());
-            // очищает буфер и сбрасываем его содержимое в выходной поток (на сервер)
             objectOutputStream.flush();
 
-            // считываем из потока объект (получаем ключ от сервера)
             ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
             publicKeyServer = (PublicKey) objectInputStream.readObject();
 
             textArea1.appendText(publicKeyServer.toString());
-
-            new ReadMsg().start();
-            new WriteMsg().start();
-
             System.out.println(HASCONNECTED);
             System.out.println(textArea1);
+
+            new ReadMsg().start();
+
         } catch (Exception e){
             System.out.println("Eroro");
         }
@@ -74,7 +70,6 @@ public class UserPost{
                     }
                     // пишем сообщение с сервера на консоль
                     textArea1.appendText(message);
-                    break;
                 }
             } catch (IOException ioException) {
                 System.out.println("An exception of type IOException was thrown by the ReadMsg method: " + ioException);
