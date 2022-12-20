@@ -43,8 +43,11 @@ public class ChatController {
 
     @FXML
     void initialize() {
+        FXMLLoader loader = new FXMLLoader();
         UserRegAuthDB userAuthDB = new UserRegAuthDB();
         authSignInButton.setOnAction(event ->{
+            authSignInButton.getScene().getWindow().hide();
+
             String loginText = login_field.getText().trim();
             String loginPassword = password_field.getText().trim();
 
@@ -59,7 +62,6 @@ public class ChatController {
         loginSingUpButton.setOnAction(event ->{
             loginSingUpButton.getScene().getWindow().hide();
 
-            FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("Registration.fxml"));
             try {
                 loader.load();

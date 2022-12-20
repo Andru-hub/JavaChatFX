@@ -3,22 +3,27 @@ package com.example.javachatfx;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.*;
 
+
 public class UserRegAuthDB {
     private static final String DB_USERNAME = "postgres";
     private static final String DB_PASS = "root";
     private static final String DB_URL = "jdbc:postgresql://localhost:5432/chatdb";
-    private Connection connectDB, connectionDB;
+    private Connection connectionDB;
     public String loginuser;
-
-    public Connection connect(String user, String pass, String url) throws SQLException {
-
-        connectDB = DriverManager.getConnection(user, pass, url);
-        return connectDB;
+    private void showError(String e) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("AUTHORIZATION ERROR");
+        alert.setHeaderText(e);
+        VBox dialogPaneContent = new VBox();
+        alert.getDialogPane().setContent(dialogPaneContent);
+        alert.showAndWait();
     }
 
     public void registration(String loginUserReg, String emailUserReg, int ageUserReg, String phoneUserReg, String passwordUserReg){
@@ -61,6 +66,7 @@ public class UserRegAuthDB {
                 stage.showAndWait();
 
             } else {
+                showError("Ошибка авторизации, проверьте данные или зарегистрируйтесь\nauthorization error, please check the data or register");
                 System.out.println("((((");
             }
         } catch (SQLException sqlException) {

@@ -25,7 +25,7 @@ public class ChatWindow{
     Socket socket;
     private PublicKey publicKeyServer;
     private String adressUser = "localhost";
-    private String nicknameUser = "DDDD";
+    public String nicknameUser = "Dima";
     private Date date_long;
     private SimpleDateFormat date;
     public BufferedReader in;
@@ -52,7 +52,7 @@ public class ChatWindow{
             ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
             publicKeyServer = (PublicKey) objectInputStream.readObject();
 
-            //chatPane.appendText(publicKeyServer.toString());
+
             System.out.println(HASCONNECTED);
 
             new ReadMsg().start();

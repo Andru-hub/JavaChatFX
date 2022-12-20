@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javachatfx.ChatController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #00241b;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javachatfx.ChatController">
     <children>
         <AnchorPane layoutX="-7.0" layoutY="164.0" prefHeight="442.0" prefWidth="806.0" style="-fx-background-color: #FAFAFA;">
             <children>
-                <Button fx:id="authSignInButton" layoutX="346.0" layoutY="310.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="113.0" style="-fx-background-color: #F39C63;" text="Войти" textFill="WHITE">
+                <Button fx:id="authSignInButton" layoutX="346.0" layoutY="310.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="113.0" style="-fx-background-color: #226f54;" text="Войти" textFill="WHITE">
                     <font>
                         <Font name="Monospaced Regular" size="25.0" />
                     </font>
@@ -23,22 +24,25 @@
                         <Font name="Monospaced Regular" size="18.0" />
                     </font>
                 </PasswordField>
-                <Label layoutX="258.0" layoutY="14.0" prefHeight="110.0" prefWidth="283.0" text="Авторизация" textFill="#666666">
+                <Label layoutX="230.0" layoutY="14.0" prefHeight="110.0" prefWidth="350.0" text="Авторизация" textFill="#666666">
                     <font>
-                        <Font name="Monospaced Regular" size="42.0" />
+                        <Font name="Book Antiqua" size="55.0" />
                     </font>
                 </Label>
             </children>
         </AnchorPane>
-        <Label layoutX="153.0" layoutY="29.0" prefHeight="110.0" prefWidth="343.0" text="HurmaChat" textFill="WHITE">
+        <Label layoutX="140.0" layoutY="30.0" prefHeight="110.0" prefWidth="343.0" text="HurmaChat" textFill="WHITE">
             <font>
-                <Font name="Elephant" size="50.0" />
+                <Font name="Book Antiqua Bold Italic" size="59.0" />
             </font>
         </Label>
-        <Button fx:id="loginSingUpButton" layoutX="600.0" layoutY="52.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="173.0" style="-fx-background-color: #F39C63;" text="Зарегистрироваться" textFill="WHITE">
+        <Button fx:id="loginSingUpButton" alignment="CENTER" layoutX="490.0" layoutY="20.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="300.0" style="-fx-background-color: #00296b;" text="Зарегистрироваться" textFill="WHITE">
             <font>
-                <Font name="Monospaced Regular" size="14.0" />
+                <Font name="Book Antiqua Bold" size="18.0" />
             </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
         </Button>
     </children>
 </AnchorPane>
