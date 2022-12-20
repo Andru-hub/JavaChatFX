@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ChatWindow{
+
     public ObservableList<String> chatHistory = FXCollections.observableArrayList();
     public static int PORT = 9999;
     UserRegAuthDB userRegAuthDB = new UserRegAuthDB();
@@ -25,10 +26,11 @@ public class ChatWindow{
     UserPost userPost;
     Socket socket;
     private PublicKey publicKeyServer;
-    private String adressUser = "192.168.1.48";
+    private String adressUser = "172.22.66.38";
     private String nicknameUser = "DDDD";
     private Date date_long;
     private SimpleDateFormat date;
+
     @FXML
     private TextArea messageBox;
     @FXML
@@ -42,22 +44,8 @@ public class ChatWindow{
         try {
             socket = new Socket(adressUser, PORT);
 
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-            // записывает в поток публичный ключ (PublicKey)
-            objectOutputStream.writeObject(pgp.getPublicKey());
-            // очищает буфер и сбрасываем его содержимое в выходной поток (на сервер)
-            objectOutputStream.flush();
-
-            // считываем из потока объект (получаем ключ от сервера)
-            ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
-            publicKeyServer = (PublicKey) objectInputStream.readObject();
-
-            chatPane.appendText(publicKeyServer.toString());
-
             System.out.println(chatPane);
-            userPost = new UserPost(socket, publicKeyServer, chatPane);
-            Thread x = new Thread(userPost);
-            x.start();
+            userPost = new UserPost(socket, chatPane);
 
         } catch (IOException ioex) {
             // Обрывается соединение при возникновении ошибки сокета
@@ -78,13 +66,11 @@ public class ChatWindow{
 
     public void sendButtonAction() throws Exception {
         String msg = messageBox.getText();
-        date_long = new Date(); // текущая дата
-        date = new SimpleDateFormat("HH:mm:ss");
-        msg = nicknameUser + "|" + date.format(date_long) + "|" + msg;
-        msg = pgp.encrypt(msg, publicKeyServer);
         if (!messageBox.getText().isEmpty()) {
-            userPost.out.write(msg + "\n");
-            userPost.out.flush();
+            date_long = new Date(); // текущая дата
+            date = new SimpleDateFormat("HH:mm:ss");
+            msg = nicknameUser + "|" + date.format(date_long) + "|" + msg;
+            userPost.setMess(msg);
             messageBox.clear();
         }
     }

@@ -11,38 +11,100 @@ import java.util.Date;
  * Класс (UserPost) ;
  * @author Владимиров Андрей ИБС - 12, Владимир Яровой ИБС - 12 , СПБГУТ
  */
-public class UserPost implements Runnable{
+public class UserPost{
     ChatWindow chatWindow;
     PGP pgp = new PGP();
     private PublicKey publicKey;
-    private static final String HASCONNECTED = "has connected";
+    private static final String HASCONNECTED = "Connection established, streams created";
     private Socket socket;
     public BufferedReader in;
     public BufferedWriter out;
     private BufferedReader inUser;
     private TextArea textArea1;
+    private PublicKey publicKeyServer;
 
-    public UserPost(Socket socket, PublicKey publicKey, TextArea textArea) {
-        this.socket = socket;
-        this.publicKey = publicKey;
-        this.textArea1 = textArea;
+    String mess;
+
+    public void setMess(String mess1) {
+        this.mess = mess1;
     }
 
-    public void run() {
-        String message;
+    public UserPost(Socket socket, TextArea textArea) throws IOException {
         try {
+            this.socket = socket;
+            this.publicKey = publicKey;
+            this.textArea1 = textArea;
             out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
+            // записывает в поток публичный ключ (PublicKey)
+            objectOutputStream.writeObject(pgp.getPublicKey());
+            // очищает буфер и сбрасываем его содержимое в выходной поток (на сервер)
+            objectOutputStream.flush();
+
+            // считываем из потока объект (получаем ключ от сервера)
+            ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+            publicKeyServer = (PublicKey) objectInputStream.readObject();
+
+            textArea1.appendText(publicKeyServer.toString());
+
+            new ReadMsg().start();
+            new WriteMsg().start();
+
             System.out.println(HASCONNECTED);
             System.out.println(textArea1);
-            while (true){
-                message = in.readLine();
-                message = pgp.encrypt(message, publicKey);
-                textArea1.appendText(message);
-            }
-
         } catch (Exception e){
             System.out.println("Eroro");
+        }
+    }
+
+    private class ReadMsg extends Thread {
+        @Override
+        public void run() {
+            String message;
+            try {
+                while (true) {
+                    // ждем сообщения с сервера
+                    message = in.readLine();
+                    // дишифруем сообщение от сервера
+                    message = pgp.decrypt(message);
+                    if (message.equals("chat_stop")) {
+                        break; // выходим из цикла если пришло "chat_stop"
+                    }
+                    // пишем сообщение с сервера на консоль
+                    textArea1.appendText(message);
+                    break;
+                }
+            } catch (IOException ioException) {
+                System.out.println("An exception of type IOException was thrown by the ReadMsg method: " + ioException);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    public class WriteMsg extends Thread {
+        @Override
+        public void run() {
+            while (true){
+                String smess, sMessUser;
+                try {
+                    smess = mess;
+                    if (smess.equalsIgnoreCase("chat_stop")) {
+                        break;
+                    } else {
+                        sMessUser = pgp.encrypt(smess, publicKeyServer);
+                        out.write(sMessUser + "\n");
+                        out.flush();
+                        break;
+                    }
+                } catch (IOException ioException) {
+                    System.out.println("An exception of type IOException was thrown by the WriteMsg method: " + ioException);
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
         }
     }
 }

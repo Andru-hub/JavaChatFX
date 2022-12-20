@@ -12,8 +12,15 @@ public class UserRegAuthDB {
     private static final String DB_USERNAME = "postgres";
     private static final String DB_PASS = "root";
     private static final String DB_URL = "jdbc:postgresql://localhost:5432/chatdb";
-    private Connection connectionDB;
+    private Connection connectDB, connectionDB;
     public String loginuser;
+
+    public Connection connect(String user, String pass, String url) throws SQLException {
+
+        connectDB = DriverManager.getConnection(user, pass, url);
+        return connectDB;
+    }
+
     public void registration(String loginUserReg, String emailUserReg, int ageUserReg, String phoneUserReg, String passwordUserReg){
         try {
             this.connectionDB = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASS);
