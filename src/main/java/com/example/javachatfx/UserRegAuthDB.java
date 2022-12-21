@@ -16,7 +16,6 @@ public class UserRegAuthDB {
     private static final String DB_PASS = "root";
     private static final String DB_URL = "jdbc:postgresql://localhost:5432/chatdb";
     private Connection connectionDB;
-    public String loginuser;
     private void showError(String e) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("AUTHORIZATION ERROR");
@@ -52,7 +51,6 @@ public class UserRegAuthDB {
             preparedStatementAuth.setString(2, passwordUserAuth);
             ResultSet resultSet = preparedStatementAuth.executeQuery();
             if (resultSet.next()){
-                loginuser = resultSet.getString(2);
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("ChatWindow.fxml"));
                 try {

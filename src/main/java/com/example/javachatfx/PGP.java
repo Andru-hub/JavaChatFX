@@ -8,10 +8,9 @@ import java.security.PublicKey;
 import java.util.Base64;
 
 /**
- * Класс шифрования PGP;
- * @author Владимиров Андрей ИБС - 12, СПБГУТ
+ * Класс шифрования PGP
  */
-public class PGP {
+public class PGP implements IPGP{
     private PrivateKey privateKey;
     private PublicKey publicKey;
     public PublicKey getPublicKey() {
@@ -41,8 +40,7 @@ public class PGP {
      */
     public String encrypt(String message, PublicKey spkay) throws Exception{
         byte[] messageToBytes = message.getBytes();
-        // Создание шифра RSA c режимом шифрования ECB (Electronic Codebook (Режим электронной кодовой книги)) и схемой
-        // дополнения PKCS5Padding
+        // Создание шифра RSA
         Cipher cipher = Cipher.getInstance("RSA");
         // Инициализация шифра в режиме шифрования
         cipher.init(Cipher.ENCRYPT_MODE, spkay);

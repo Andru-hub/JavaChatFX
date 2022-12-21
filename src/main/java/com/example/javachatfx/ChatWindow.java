@@ -24,8 +24,8 @@ public class ChatWindow{
     PGP pgp = new PGP();
     Socket socket;
     private PublicKey publicKeyServer;
-    private String adressUser = "localhost";
-    public String nicknameUser = "Dima";
+    private String adressUser = "192.168.17.30";
+    private String nicknameUser = "Andru";
     private Date date_long;
     private SimpleDateFormat date;
     public BufferedReader in;
@@ -81,7 +81,6 @@ public class ChatWindow{
                     }
                     // пишем сообщение с сервера на консоль
                     chatPane.appendText(message + "\n");
-                    System.out.println(message);
                 }
             } catch (IOException ioException) {
                 System.out.println("An exception of type IOException was thrown by the ReadMsg method: " + ioException);

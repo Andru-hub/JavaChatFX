@@ -4,11 +4,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #003049;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javachatfx.RegistrationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #00241b;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javachatfx.RegistrationController">
     <children>
         <AnchorPane layoutX="-7.0" layoutY="164.0" prefHeight="442.0" prefWidth="806.0" style="-fx-background-color: #FAFAFA;">
             <children>
-                <Button fx:id="regSignInButton" layoutX="247.0" layoutY="310.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="311.0" style="-fx-background-color: #f77f00;" text="Зарегистрироваться" textFill="WHITE">
+                <Button fx:id="regSignInButton" layoutX="247.0" layoutY="310.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="311.0" style="-fx-background-color: #226f54;" text="Зарегистрироваться" textFill="WHITE">
                     <font>
                         <Font name="Book Antiqua" size="27.0" />
                     </font>

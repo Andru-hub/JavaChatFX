@@ -22,14 +22,14 @@
                                 <Font name="SansSerif Regular" size="14.0" />
                             </font>
                         </TextArea>
-                        <Button fx:id="buttonSend" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="43.0" prefWidth="140.0" scaleShape="false" text="SEND" textAlignment="CENTER" HBox.hgrow="NEVER" />
+                        <Button fx:id="buttonSend" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="43.0" prefWidth="140.0" scaleShape="false" text="Send" textAlignment="CENTER" HBox.hgrow="NEVER" />
                     </children>
                 </HBox>
             </children>
         </VBox>
     </center>
     <top>
-        <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="1040.0" style="-fx-background-color: #031c30;" BorderPane.alignment="CENTER">
+        <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="60.0" prefWidth="1040.0" style="-fx-background-color: #00241b;" BorderPane.alignment="CENTER">
             <center>
                 <ImageView fitHeight="79.0" fitWidth="522.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                     <BorderPane.margin>

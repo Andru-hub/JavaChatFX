@@ -3,8 +3,7 @@ import java.io.*;
 import java.util.Date;
 import java.time.LocalDateTime;
 /**
- * Класс пользователя (user) со свойствами login, email и password;
- * @author Владимиров Андрей ИБС - 12, Владимир Яровой ИБС - 12 , СПБГУТ
+ * Класс пользователя (user) со свойствами login, email и password
  */
 
 public class User {
